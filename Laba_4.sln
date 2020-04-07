@@ -1,0 +1,104 @@
+﻿using System;
+/* ✔Створити суперклас Будівля і підкласи 
+ * ✔Громадська Будівля, Житлова Будівля, Кінотеатр, Готель. 
+ * ✔За допомогою конструктора задати дату побудови будівлі. 
+ * ✔Визначити вартість оренди одного місця в будівлі. 
+ * ✔Визначити вартість вхідного квитка в громадську будівлю. 
+ * ✔Визначити місткість будівлі.*/
+namespace Laba_4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PublicBuilding PC = new PublicBuilding("Court", "12.02.1968", 3000);
+            PC.EnterPrice(15);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            ResidentialBuilding RB = new ResidentialBuilding("N34", "13.04.2001", 2500);
+            RB.EnterPrice(0);
+            RB.PriceOfApartments(1500);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Cinema cinema = new Cinema("American Cinema", "6.25.1897", 1000);
+            cinema.EnterPrice(100);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Hotel hotel = new Hotel("Hotel Victoria", "8.6.1997", 2000);
+            hotel.EnterPrice(0);
+            hotel.PriceOfRoom(249);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Console.ReadKey();
+        }
+    }
+    abstract class Сonstruction
+    {
+        public string ConstructionDate;
+        public int Capacity;
+        public string Name;
+        public Сonstruction(string name, string date, int capacity)
+        {
+            this.Name = name;
+            this.Capacity = capacity;
+            this.ConstructionDate = date;
+
+            Console.WriteLine("Name:   " + name);
+            Console.WriteLine();
+            Console.WriteLine("Construction date: " + date);
+            Console.WriteLine("Capacity: " + capacity);
+        }
+    }
+    class PublicBuilding : Сonstruction
+    {
+        public PublicBuilding(string name, string date, int capacity)
+            : base(name, date, capacity) { }
+        public void EnterPrice(int ticket)
+        {
+            Console.WriteLine("Building enter price: {0}", ticket);
+        }
+    }
+
+    class ResidentialBuilding : Сonstruction
+    {
+        public ResidentialBuilding(string name, string date, int capacity)
+            : base(name, date, capacity) { }
+        public void PriceOfApartments(int HousePrice)
+        {
+            Console.WriteLine("One apartment price(per month): " + HousePrice);
+        }
+        public void EnterPrice(int ticket)
+        {
+            Console.WriteLine("Building enter price: {0}", ticket);
+        }
+    }
+
+    class Cinema : Сonstruction
+    {
+        public Cinema(string name, string date, int capacity)
+            : base(name, date, capacity) { }
+        public void EnterPrice(int ticket)
+        {
+            Console.WriteLine("Building enter price: {0}", ticket);
+        }
+    }
+
+    class Hotel : Сonstruction
+    {
+
+        public Hotel(string name, string date, int capacity)
+            : base(name, date, capacity) { }
+        public void EnterPrice(int ticket)
+        {
+            Console.WriteLine("Building enter price: {0}", ticket);
+        }
+        public void PriceOfRoom(int RoomPrice)
+        {
+            Console.WriteLine("One room price(per night): " + RoomPrice);
+        }
+    }
+}
